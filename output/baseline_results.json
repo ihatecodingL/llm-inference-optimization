@@ -1,0 +1,79 @@
+{
+  "fp16": {
+    "attempted": true,
+    "oom_occurred": true,
+    "error_message": "CUDA out of memory. Tried to allocate 10.54 GiB. GPU 0 has a total capacity of 11.74 GiB of which 2.43 GiB is free. Including non-PyTorch memory, this process has 8.50 GiB memory in use. Of the allocated memory 8.39 GiB is allocated by PyTorch, and 1.62 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stabl",
+    "vram_peak_mb": 8596.4,
+    "model_size_est_gb": 14.1,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "gpu_vram_total_gb": 11.7,
+    "offload_vram_mb": 8596.4
+  },
+  "nf4": {
+    "quantization": "NF4 (bitsandbytes)",
+    "load_time_s": 3.1,
+    "vram_after_load_mb": 8596.4,
+    "vram_after_warmup_mb": 8596.4,
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "num_prompts": 5,
+    "max_new_tokens": 128,
+    "avg_tokens_per_second": 30.21,
+    "min_tokens_per_second": 30.09,
+    "max_tokens_per_second": 30.35,
+    "avg_ms_per_token": 33.1,
+    "avg_vram_peak_mb": 5568.1,
+    "max_vram_peak_mb": 5568.7,
+    "per_prompt": [
+      {
+        "prompt": "What is the capital of France?",
+        "input_tokens": 7,
+        "output_tokens": 128,
+        "total_time_s": 4.217,
+        "tokens_per_second": 30.35,
+        "avg_ms_per_token": 32.95,
+        "vram_peak_mb": 5567.7,
+        "generated_text": " The capital of France is Paris. \n\nParis is a city located in northern France and is known for its iconic landmarks such as the Eiffel Tower, Notre-Dame Cathedral, and the Louvre Museum. It is also a "
+      },
+      {
+        "prompt": "Explain the difference between a list and a tuple in Python.",
+        "input_tokens": 13,
+        "output_tokens": 128,
+        "total_time_s": 4.235,
+        "tokens_per_second": 30.23,
+        "avg_ms_per_token": 33.08,
+        "vram_peak_mb": 5568.7,
+        "generated_text": " In Python, a list and a tuple are both used to store collections of items. However, there are some important differences between them:\n\n1. Mutability: The most significant difference is that lists ar"
+      },
+      {
+        "prompt": "Write a short poem about artificial intelligence.",
+        "input_tokens": 8,
+        "output_tokens": 128,
+        "total_time_s": 4.253,
+        "tokens_per_second": 30.09,
+        "avg_ms_per_token": 33.23,
+        "vram_peak_mb": 5567.9,
+        "generated_text": " In the digital realm, where circuits hum,\nLives a mind that thinks beyond the sum.\nOf binary code and logic's flow,\nA consciousness in silicon glow.\n\nIt learns from patterns, vast and deep,\nIn data o"
+      },
+      {
+        "prompt": "How does a transformer model work in natural language processing?",
+        "input_tokens": 11,
+        "output_tokens": 128,
+        "total_time_s": 4.254,
+        "tokens_per_second": 30.09,
+        "avg_ms_per_token": 33.23,
+        "vram_peak_mb": 5568.3,
+        "generated_text": " A transformer model is a type of neural network architecture that has been widely used in natural language processing (NLP) tasks, such as language translation, text summarization, and sentiment anal"
+      },
+      {
+        "prompt": "Describe the process of photosynthesis in plants.",
+        "input_tokens": 9,
+        "output_tokens": 128,
+        "total_time_s": 4.227,
+        "tokens_per_second": 30.28,
+        "avg_ms_per_token": 33.02,
+        "vram_peak_mb": 5568.0,
+        "generated_text": " Photosynthesis is a vital biological process that occurs in plants, algae, and some bacteria. It involves the conversion of light energy into chemical energy, which is then used to produce glucose (a"
+      }
+    ]
+  }
+}

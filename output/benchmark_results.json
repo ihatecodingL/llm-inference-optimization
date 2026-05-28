@@ -1,0 +1,142 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3060 12GB",
+  "n_gpu_layers": 99,
+  "perplexity": [
+    {
+      "model": "FP16",
+      "ppl": 7.7206,
+      "ppl_stderr": 0.05367,
+      "time_s": 1055.6,
+      "note": "CPU-only (-ngl 0), GPU too small for FP16 14.9GB model",
+      "chunks": 579
+    },
+    {
+      "model": "Q8_0",
+      "ppl": 7.7256,
+      "time_s": 151.2
+    },
+    {
+      "model": "Q5_K_M",
+      "ppl": 7.7744,
+      "time_s": 167.4
+    },
+    {
+      "model": "Q4_K_M",
+      "ppl": 7.8435,
+      "time_s": 164.6
+    },
+    {
+      "model": "Q4_0",
+      "ppl": 7.9947,
+      "time_s": 150.6
+    },
+    {
+      "model": "IQ4_NL",
+      "ppl": 7.9399,
+      "time_s": 153.4
+    }
+  ],
+  "bench": [
+    {
+      "model": "FP16",
+      "error": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12022 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12022 MiB\nllama_bench: error: failed to load model '$PROJECT_ROOT/models/gguf/qwen2.5-7b-fp16.gguf'\n"
+    },
+    {
+      "model": "Q8_0",
+      "prefill_tok_s": 2124.32,
+      "decode_tok_s": 39.31,
+      "decode_ms_per_token": 25.44,
+      "model_size_mb": 7717.7,
+      "bench_time_s": 12.3
+    },
+    {
+      "model": "Q5_K_M",
+      "prefill_tok_s": 1978.26,
+      "decode_tok_s": 54.8,
+      "decode_ms_per_token": 18.25,
+      "model_size_mb": 5186.9,
+      "bench_time_s": 9.3
+    },
+    {
+      "model": "Q4_K_M",
+      "prefill_tok_s": 1995.43,
+      "decode_tok_s": 61.03,
+      "decode_ms_per_token": 16.39,
+      "model_size_mb": 4460.4,
+      "bench_time_s": 8.4
+    },
+    {
+      "model": "Q4_0",
+      "prefill_tok_s": 2192.99,
+      "decode_tok_s": 67.05,
+      "decode_ms_per_token": 14.91,
+      "model_size_mb": 4220.4,
+      "bench_time_s": 7.8
+    },
+    {
+      "model": "IQ4_NL",
+      "prefill_tok_s": 2178.14,
+      "decode_tok_s": 65.93,
+      "decode_ms_per_token": 15.17,
+      "model_size_mb": 4250.8,
+      "bench_time_s": 7.8
+    }
+  ],
+  "comparison": [
+    {
+      "model": "FP16",
+      "file_size_gb": 14.19,
+      "ppl": 7.7206,
+      "ppl_delta": 0.0,
+      "prefill_tok_s": null,
+      "decode_tok_s": null,
+      "decode_ms_per_token": null,
+      "note": "FP16 GPU不可加载，PPL用CPU(-ngl 0)测得，速度不可用"
+    },
+    {
+      "model": "Q8_0",
+      "file_size_gb": 7.54,
+      "ppl": 7.7256,
+      "ppl_delta": 0.0050,
+      "prefill_tok_s": 2124.32,
+      "decode_tok_s": 39.31,
+      "decode_ms_per_token": 25.44
+    },
+    {
+      "model": "Q5_K_M",
+      "file_size_gb": 5.07,
+      "ppl": 7.7744,
+      "ppl_delta": 0.0538,
+      "prefill_tok_s": 1978.26,
+      "decode_tok_s": 54.8,
+      "decode_ms_per_token": 18.25
+    },
+    {
+      "model": "Q4_K_M",
+      "file_size_gb": 4.36,
+      "ppl": 7.8435,
+      "ppl_delta": 0.1229,
+      "prefill_tok_s": 1995.43,
+      "decode_tok_s": 61.03,
+      "decode_ms_per_token": 16.39
+    },
+    {
+      "model": "Q4_0",
+      "file_size_gb": 4.12,
+      "ppl": 7.9947,
+      "ppl_delta": 0.2741,
+      "prefill_tok_s": 2192.99,
+      "decode_tok_s": 67.05,
+      "decode_ms_per_token": 14.91
+    },
+    {
+      "model": "IQ4_NL",
+      "file_size_gb": 4.15,
+      "ppl": 7.9399,
+      "ppl_delta": 0.2193,
+      "prefill_tok_s": 2178.14,
+      "decode_tok_s": 65.93,
+      "decode_ms_per_token": 15.17
+    }
+  ]
+}

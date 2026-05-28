@@ -1,0 +1,5 @@
+GPU: NVIDIA GeForce RTX 3060 (11.7 GB)
+Model size estimate: 14.1 GB
+OOM occurred: True
+Error: CUDA out of memory. Tried to allocate 10.54 GiB. GPU 0 has a total capacity of 11.74 GiB of which 2.43 GiB is free. Including non-PyTorch memory, this process has 8.50 GiB memory in use. Of the allocated memory 8.39 GiB is allocated by PyTorch, and 1.62 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stabl
+VRAM at failure: 8596.4 MB

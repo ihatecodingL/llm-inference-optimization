@@ -1,0 +1,126 @@
+{
+  "model": "Qwen2.5-7B-Instruct",
+  "model_params": {
+    "total_params": "7.6B",
+    "num_layers": 28,
+    "hidden_size": 3584,
+    "intermediate_size": 18944,
+    "num_q_heads": 28,
+    "num_kv_heads": 4,
+    "head_dim": 128,
+    "max_seq_len": 32768,
+    "vocab_size": 152064
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3060",
+    "vram_gb": 12,
+    "bandwidth_gb_s": 360,
+    "compute_capability": "8.6",
+    "sm_count": 28,
+    "peak_tflops_fp16": 12.74
+  },
+  "quantizations": [
+    {
+      "name": "FP16",
+      "type": "none",
+      "bits_per_weight": 16,
+      "file_size_gb": 14.2,
+      "ppl": 7.7206,
+      "ppl_delta": 0.0,
+      "prefill_tok_s": null,
+      "decode_tok_s": null,
+      "gpu_loadable": false,
+      "method": "IEEE 754 half-precision",
+      "note": "14.9GB > 12GB GPU VRAM, OOM when loading to GPU. PPL measured with CPU-only (-ngl 0)."
+    },
+    {
+      "name": "Q8_0",
+      "type": "per-block",
+      "bits_per_weight": 8,
+      "block_size": 32,
+      "file_size_gb": 7.5,
+      "ppl": 7.7256,
+      "ppl_delta": 0.005,
+      "prefill_tok_s": 2124,
+      "decode_tok_s": 39.3,
+      "gpu_loadable": true,
+      "method": "8-bit per-block symmetric quantization. Each block of 32 weights shares one FP16 scale factor.",
+      "best_for": "maximum quality, PPL nearly identical to FP16"
+    },
+    {
+      "name": "Q5_K_M",
+      "type": "K-Quants",
+      "bits_per_weight": 5,
+      "super_block_size": 256,
+      "mini_block_count": 16,
+      "file_size_gb": 5.1,
+      "ppl": 7.7744,
+      "ppl_delta": 0.054,
+      "prefill_tok_s": 1978,
+      "decode_tok_s": 54.8,
+      "gpu_loadable": true,
+      "method": "K-Quants mixed-precision: attention layers (Q/K/V/O) use Q6_K, FFN layers use Q5_K. Super-block of 256 elements with 16 mini-blocks of 16.",
+      "best_for": "balanced quality/speed tradeoff"
+    },
+    {
+      "name": "Q4_K_M",
+      "type": "K-Quants",
+      "bits_per_weight": 4,
+      "super_block_size": 256,
+      "mini_block_count": 16,
+      "file_size_gb": 4.4,
+      "ppl": 7.8435,
+      "ppl_delta": 0.123,
+      "prefill_tok_s": 1995,
+      "decode_tok_s": 61.0,
+      "gpu_loadable": true,
+      "method": "K-Quants mixed-precision: attention layers use Q6_K, FFN layers use Q4_K. Super-block of 256 elements with 16 mini-blocks of 16.",
+      "best_for": "best overall tradeoff (recommended)",
+      "recommended": true
+    },
+    {
+      "name": "IQ4_NL",
+      "type": "importance-aware",
+      "bits_per_weight": 4,
+      "file_size_gb": 4.2,
+      "ppl": 7.9399,
+      "ppl_delta": 0.219,
+      "prefill_tok_s": 2178,
+      "decode_tok_s": 65.9,
+      "gpu_loadable": true,
+      "method": "Importance-aware quantization with non-linear grid. Uses activation statistics to assign quantization precision based on weight importance.",
+      "best_for": "better PPL than plain Q4_0 at similar speed"
+    },
+    {
+      "name": "Q4_0",
+      "type": "per-block",
+      "bits_per_weight": 4,
+      "block_size": 32,
+      "file_size_gb": 4.1,
+      "ppl": 7.9947,
+      "ppl_delta": 0.274,
+      "prefill_tok_s": 2193,
+      "decode_tok_s": 67.0,
+      "gpu_loadable": true,
+      "method": "4-bit per-block symmetric quantization. Each block of 32 weights shares one FP16 scale. Quant formula: q = round(clamp(x/scale, -8, 7)).",
+      "best_for": "maximum speed, acceptable quality loss"
+    }
+  ],
+  "kv_cache": {
+    "per_token_bytes_fp16": 57344,
+    "per_token_kb_fp16": 56.0,
+    "gqa_ratio": "7:1 (28 Q heads, 4 KV heads)",
+    "cache_types": {
+      "f16": {"bytes_per_element": 2, "compatible": true},
+      "q8_0": {"bytes_per_element": 1, "compatible": "K only (no FA), K+V (with FA)"},
+      "q4_0": {"bytes_per_element": 0.5, "compatible": "K only (no FA)"}
+    },
+    "v_cache_quant_requires_fa": true,
+    "root_cause": "Non-FA path transposes V (llama-graph.cpp:2057-2061), block-quantized data cannot be transposed"
+  },
+  "benchmark_settings": {
+    "ppl_test": "WikiText-2 test set (579 chunks), --no-warmup",
+    "speed_test": "llama-bench -p 512 -n 128 -b 2048 -r 3",
+    "cpp_backend": "llama.cpp (commit 35a74c8fb), CUDA backend"
+  }
+}

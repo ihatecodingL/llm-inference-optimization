@@ -1,0 +1,43 @@
+{
+  "hf_model": "$PROJECT_ROOT/models/qwen2.5-7b-instruct/Qwen/Qwen2.5-7B-Instruct",
+  "gguf_dir": "$PROJECT_ROOT/models/gguf",
+  "fp16_path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-fp16.gguf",
+  "quantizations": [
+    {
+      "type": "Q8_0",
+      "desc": "8-bit per-channel symmetric",
+      "est_gb": 7.6,
+      "actual_gb": 7.54,
+      "path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-Q8_0.gguf"
+    },
+    {
+      "type": "Q5_K_M",
+      "desc": "5-bit K-Quants mixed precision",
+      "est_gb": 5.1,
+      "actual_gb": 5.07,
+      "path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-Q5_K_M.gguf"
+    },
+    {
+      "type": "Q4_K_M",
+      "desc": "4-bit K-Quants mixed precision",
+      "est_gb": 4.4,
+      "actual_gb": 4.36,
+      "path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-Q4_K_M.gguf"
+    },
+    {
+      "type": "Q4_0",
+      "desc": "4-bit per-block symmetric",
+      "est_gb": 3.9,
+      "actual_gb": 4.13,
+      "path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-Q4_0.gguf"
+    },
+    {
+      "type": "IQ4_NL",
+      "desc": "4-bit importance-aware non-linear",
+      "est_gb": 4.2,
+      "actual_gb": 4.16,
+      "path": "$PROJECT_ROOT/models/gguf/qwen2.5-7b-IQ4_NL.gguf"
+    }
+  ],
+  "fp16_size_gb": 14.19
+}

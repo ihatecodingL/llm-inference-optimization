@@ -1,0 +1,39 @@
+{
+  "model": "Q4_K_M",
+  "config": {
+    "num_layers": 28,
+    "hidden_size": 3584,
+    "intermediate_size": 18944,
+    "num_q_heads": 28,
+    "num_kv_heads": 4,
+    "head_dim": 128,
+    "vocab_size": 152064
+  },
+  "rtx3060_peak_tflops": 12.74,
+  "bench_date": "2026-05-28",
+  "note": "Same-session FA ON vs FA OFF controlled comparison. TFLOPS values are overestimated due to theoretical FLOPs formula; focus on relative speedup and TTFT.",
+  "flops_theoretical": [
+    {"seq_len": 128, "total_gflops": 1834.89, "total_tflops": 1.835, "qkv_proj_gflops": 276.22, "attention_gflops": 6.58, "ffn_gflops": 1460.02, "out_proj_gflops": 92.07},
+    {"seq_len": 256, "total_gflops": 3682.93, "total_tflops": 3.683, "qkv_proj_gflops": 552.44, "attention_gflops": 26.31, "ffn_gflops": 2920.04, "out_proj_gflops": 184.15},
+    {"seq_len": 512, "total_gflops": 7418.48, "total_tflops": 7.418, "qkv_proj_gflops": 1104.88, "attention_gflops": 105.23, "ffn_gflops": 5840.08, "out_proj_gflops": 368.29},
+    {"seq_len": 1024, "total_gflops": 15047.42, "total_tflops": 15.047, "qkv_proj_gflops": 2209.76, "attention_gflops": 420.91, "ffn_gflops": 11680.16, "out_proj_gflops": 736.59},
+    {"seq_len": 2048, "total_gflops": 30936.65, "total_tflops": 30.937, "qkv_proj_gflops": 4419.52, "attention_gflops": 1683.63, "ffn_gflops": 23360.33, "out_proj_gflops": 1473.17},
+    {"seq_len": 4096, "total_gflops": 65240.55, "total_tflops": 65.241, "qkv_proj_gflops": 8839.04, "attention_gflops": 6734.51, "ffn_gflops": 46720.65, "out_proj_gflops": 2946.35}
+  ],
+  "bench_fa_off": [
+    {"seq_len": 128, "prefill_tok_s": 1420, "ttft_ms": 90, "stddev_ts": 42},
+    {"seq_len": 256, "prefill_tok_s": 1505, "ttft_ms": 170, "stddev_ts": 35},
+    {"seq_len": 512, "prefill_tok_s": 1474, "ttft_ms": 347, "stddev_ts": 24},
+    {"seq_len": 1024, "prefill_tok_s": 1408, "ttft_ms": 727, "stddev_ts": 10},
+    {"seq_len": 2048, "prefill_tok_s": 1136, "ttft_ms": 1804, "stddev_ts": 27},
+    {"seq_len": 4096, "prefill_tok_s": 1173, "ttft_ms": 3493, "stddev_ts": 26}
+  ],
+  "bench_fa_on": [
+    {"seq_len": 128, "prefill_tok_s": 1448, "ttft_ms": 89, "stddev_ts": 73, "speedup_vs_baseline": 1.02},
+    {"seq_len": 256, "prefill_tok_s": 1605, "ttft_ms": 160, "stddev_ts": 7, "speedup_vs_baseline": 1.07},
+    {"seq_len": 512, "prefill_tok_s": 1598, "ttft_ms": 321, "stddev_ts": 28, "speedup_vs_baseline": 1.08},
+    {"seq_len": 1024, "prefill_tok_s": 1602, "ttft_ms": 639, "stddev_ts": 7, "speedup_vs_baseline": 1.14},
+    {"seq_len": 2048, "prefill_tok_s": 1559, "ttft_ms": 1314, "stddev_ts": 7, "speedup_vs_baseline": 1.37},
+    {"seq_len": 4096, "prefill_tok_s": 1518, "ttft_ms": 2699, "stddev_ts": 4, "speedup_vs_baseline": 1.29}
+  ]
+}
