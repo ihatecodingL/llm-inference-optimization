@@ -142,21 +142,6 @@ python scripts/05_prefill_analysis.py
 python plot_results.py
 ```
 
-## 面试要点
-
-**项目一句话**: Qwen2.5-7B FP16 放不进 RTX 3060 12GB，用 GGUF Q4_K_M 压缩到 4.4GB，PPL 损失 0.12 换来 decode 61 tok/s。NCU profiling 定位 FFN matvec 占 decode 88%，roofline 验证 memory-bound。
-
-**能回答的问题**:
-
-| 面试官问 | 你能答 | 证据 |
-|---------|-------|------|
-| 用过推理框架吗？ | llama.cpp 量化、KV cache、attention 实现 | `output/benchmark_results.md` |
-| 懂量化吗？ | GGUF block-wise 量化、K-Quants 混合精度策略 | `docs/quantization_theory.md` |
-| Decode 为什么慢？ | memory-bound MatVec，实测 DRAM 82.4%，OI 31.6 < Ridge 35.4 | `output/ncu_profiling.md` |
-| Prefill vs Decode？ | Prefill MatMul compute-bound（TTFT 随 seq_len 线性），Decode MatVec memory-bound（速度恒定） | `output/prefill_analysis.md` |
-| KV Cache 量化怎么做？ | K cache 随时可用，V cache 需要 FA（源码级根因） | `output/kv_cache_analysis.md` |
-| 会写 CUDA 吗？ | 分析了 llama.cpp 已融合的 kernel（RMSNorm+Residual, Dequant+MatVec），NCU 实测 | `output/ncu_profiling.md` |
-
 ## 参考资料
 
 - [GGUF 格式](https://github.com/ggerganov/ggml)
